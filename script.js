@@ -8,12 +8,12 @@ const voltarPopBtn = document.getElementById('voltar-pop-btn');
 const infoText = `
 //Venha comemorar comigo meus 18 anos!
 
-  Informações() => {
-    Data: Domingo, 05 de Maio de 2024
-    Horário: A partir das 11h da manhã
-    Local: AABB - Quiosque Rio G. do Sul
-    Programação: Festa, Churras e Alegria
-  }
+Informações() => {
+  Data: Domingo, 05 de Maio de 2024
+  Horário: A partir das 11h da manhã
+  Local: AABB/Quiosque Rio G. do Sul
+  Programação: Festa, Churras, Alegria
+}
 
 //OBS: Os convites são extremamente restritos, portanto pedimos a confirmação de sua presença dentro do prazo de 01 semana, combinado? Você também pode fazer isso pelo botão 'CONFIRMAÇÃO' na página inicial.
 
