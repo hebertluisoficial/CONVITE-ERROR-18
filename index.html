@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERROR #18</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: black;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #header {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: black;
+            z-index: 999;
+            padding: 10px 0;
+        }
+        
+        h1 {
+            color: red;
+            margin: 0;
+        }
+        
+        .container {
+            text-align: center;
+            color: white;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .button {
+            display: block;
+            text-transform: uppercase;
+            width: 200px;
+            padding: 15px;
+            margin: 10px auto;
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        
+        .button:hover {
+            background-color: white;
+            color: black;
+        }
+        
+        footer {
+            width: 100%;
+            background-color: red;
+            color: black;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            z-index: 999;
+            font-weight:bolder;
+        }
+        
+        #video-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 9999;
+        }
+        
+        #video {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #info-container {
+            color: white;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            overflow: auto;
+            max-height: calc(100% - 100px);
+            margin-top: 70px; /* Ajuste conforme necessário */
+            margin-bottom: 70px; /* Ajuste conforme necessário */
+            display: none;
+        }
+
+        #voltar-btn {
+            display: none;
+            text-transform: uppercase;
+            width: 130px;
+            padding: 15px;
+            margin: 10px auto;
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        #voltar-btn:hover {
+            background-color: white;
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>ERROR #18</h1>
+    </div>
+    <div class="container">
+        <a href="#" class="button" id="convite-btn">Convite</a>
+        <a href="#" class="button" id="info-btn">Informações</a>
+        <a href="#" class="button">Confirmação</a>
+    </div>
+    <footer>
+        by: @hebertluisoficial
+    </footer>
+
+    <div id="video-container">
+        <video id="video" controls>
+            <source src="convite.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div id="info-container">
+        <!-- Conteúdo vazio para preenchimento via JavaScript -->
+    </div>
+
+    <button id="voltar-btn">Voltar</button>
+
+    <script>
+        const conviteBtn = document.getElementById('convite-btn');
+        const infoBtn = document.getElementById('info-btn');
+        const videoContainer = document.getElementById('video-container');
+        const infoContainer = document.getElementById('info-container');
+        const voltarBtn = document.getElementById('voltar-btn');
+
+        const infoText = `
+//Venha comemorar comigo meu aniversário de 18 anos e me ajudar a solucionar o ERROR #18:
+
+
+  Informações() => {
+    Data: Domingo, 05 de Maio de 2024
+    Horário: A partir das 11h da manhã
+    Local: AABB - Quiosque Rio G. do Sul
+    Programação: Festa, Churras, Alegria
+  }
+
+
+//Os convites são extremamente restitos, portanto pedimos a confirmação de sua presença dentro do prazo de 01 semana, combinado? Você pode fazer isso pelo botão 'CONFIRMAÇÃO' na página inicial.
+
+//TE VEJO LÁ! ↓`;
+
+        let currentText = '';
+        let currentIndex = 0;
+        let typingSpeed = 10; // Velocidade de digitação (em milissegundos)
+
+        function typeText() {
+            if (currentIndex < infoText.length) {
+                currentText += infoText.charAt(currentIndex);
+                infoContainer.innerText = currentText;
+                currentIndex++;
+                setTimeout(typeText, typingSpeed);
+            } else {
+                voltarBtn.style.display = 'block'; // Mostra o botão "Voltar" após a animação estar completa
+            }
+        }
+
+        conviteBtn.addEventListener('click', function() {
+            videoContainer.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            const video = document.getElementById('video');
+            video.play();
+
+            video.addEventListener('ended', function() {
+                videoContainer.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        infoBtn.addEventListener('click', function() {
+            document.getElementById('header').style.display = 'block';
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('footer').style.display = 'block';
+            infoContainer.style.display = 'block';
+            typeText(); // Inicia a animação de digitação
+        });
+
+        voltarBtn.addEventListener('click', function() {
+            document.getElementById('header').style.display = 'block';
+            document.querySelector('.container').style.display = 'flex';
+            document.querySelector('footer').style.display = 'block';
+            infoContainer.style.display = 'none';
+            voltarBtn.style.display = 'none';
+
+            // Reinicia as variáveis para a próxima vez que o botão de informações for clicado
+            currentText = '';
+            currentIndex = 0;
+            infoContainer.innerText = '';
+        });
+    </script>
+</body>
+</html>
